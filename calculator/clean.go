@@ -27,6 +27,7 @@ func main(){
 		fmt.Printf("Number 2 = \n")
 		fmt.Scanln(&num2)
 		executeOption(option, num1, num2)
+		fmt.Scanln()
 		clearScreen()
 	}
 }
@@ -49,10 +50,10 @@ func executeOption(option int, num1, num2 float32) {
 	case 3:
 		fmt.Printf("Result %.2f * %.2f = %.2f\n", num1, num2, Multiplication(num1,num2))
 	case 4:
-		if num2 != 0 {
+		if (num2 !=0 && num1 != 0) {
 			fmt.Printf("Result %.2f / %.2f = %.2f\n", num1, num2, Division(num1,num2))
 		} else {
-			fmt.Println("Cannot divide by zero")
+			fmt.Println("Cannot divide by or with zero")
 		}
 	}
 }
@@ -67,11 +68,10 @@ func Multiplication(num1,num2 float32) float32{
 	return num1*num2
 }
 func Division(num1,num2 float32) float32{
-	return num1/num2	
+	return num1/num2
 }
 
 func clearScreen(){
-	waitForEnter()
 	var cmd *exec.Cmd
 	if runtime.GOOS == "windows"{
 		cmd = exec.Command("cmd","/c", "cls")
